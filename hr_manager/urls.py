@@ -17,6 +17,8 @@ urlpatterns = [
     path('employers/', views.employers_view, name='employers'),
     path('upload/', views.upload_view, name='upload'),
     path('register/', views.register_view, name='register'),
+    path('logout/', views.logout_view, name='logout'),
+
 
     # Api Stuff
     path('api/', include(router.urls)),

@@ -1,6 +1,7 @@
 from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, redirect
 from django.template.loader import get_template
+from django.contrib.auth import logout
 from django.contrib import messages
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -13,6 +14,12 @@ from .serializers import RegisterSerializer
 # Create your views here.
 def home_view(request):
     return render(request, "home.html")
+
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, "You have been logged out.")
+    return redirect("home")
 
 
 def contact_view(request):
