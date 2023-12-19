@@ -1,7 +1,7 @@
 from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, redirect
 from django.template.loader import get_template
-from django.contrib.auth import logout
+from django.contrib.auth import logout, get_user_model
 from django.contrib import messages
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -11,7 +11,9 @@ from .forms import UserImageForm, RegisterForm
 from .serializers import RegisterSerializer
 
 
-# Create your views here.
+AuthUserModel = get_user_model()
+
+
 def home_view(request):
     return render(request, "home.html")
 
@@ -105,3 +107,14 @@ class RegisterViewSet(viewsets.ViewSet):
             return Response(content, status=200)
 
         return Response(register_serializer.errors, status=400)
+
+    @staticmethod
+    def list(request):
+        all_users = AuthUserModel.objects.all()
+        register_serializer = RegisterSerializer(all_users, many=True)
+
+        content = {
+            "users": register_serializer.data,
+        }
+
+        return Response(content, status=200)

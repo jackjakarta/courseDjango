@@ -4,10 +4,14 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
+
 import hr.views as views
+import catalog.views as catalog_views
+
 
 router = routers.DefaultRouter()
 router.register(r'register', views.RegisterViewSet, 'register')
+router.register(r'products', catalog_views.ProductViewSet, 'products')
 
 urlpatterns = [
     # Website Pages
@@ -19,14 +23,13 @@ urlpatterns = [
     path('register/', views.register_view, name='register'),
     path('logout/', views.logout_view, name='logout'),
 
-
     # Api Stuff
     path('api/', include(router.urls)),
     path('api/auth/', jwt_views.TokenObtainPairView.as_view(), name='api-auth'),
     path('api/auth/refresh/', jwt_views.TokenRefreshView.as_view(), name='api-auth-refresh'),
 
     # Utility Views
-    path('sendemail', views.send_email_view, name='sendemail'),
+    path('sendemail/', views.send_email_view, name='sendemail'),
 ]
 
 if settings.DEBUG is True:

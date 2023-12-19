@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import make_password
 
 
 AuthUserModel = get_user_model()
@@ -24,8 +25,8 @@ class RegisterSerializer(serializers.Serializer):
             email=validated_data["email"],
             first_name=validated_data["first_name"],
             last_name=validated_data["last_name"],
-            password=validated_data["password"],
+            password=make_password(validated_data["password"]),
         )
 
-    def update(self, instance, validated_data):
-        pass
+    # def list(self, validated_data):
+    #     pass
