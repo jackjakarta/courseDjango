@@ -34,7 +34,7 @@ def employers_view(request):
     all_employers_qs = Employer.objects.all()
     print(all_employers_qs)
     return render(request, "employers.html", {
-        "message": "Dinamic message!",
+        "message": "Dynamic message!",
         "employers": all_employers_qs
     })
 

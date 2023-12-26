@@ -23,7 +23,7 @@ urlpatterns = [
     path('register/', views.register_view, name='register'),
     path('logout/', views.logout_view, name='logout'),
 
-    # Api Stuff
+    # API Paths
     path('api/', include(router.urls)),
     path('api/auth/', jwt_views.TokenObtainPairView.as_view(), name='api-auth'),
     path('api/auth/refresh/', jwt_views.TokenRefreshView.as_view(), name='api-auth-refresh'),
