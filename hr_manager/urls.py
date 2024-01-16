@@ -16,7 +16,7 @@ router.register(r'products', catalog_views.ProductViewSet, 'products')
 urlpatterns = [
     # Website Pages
     path('admin/', admin.site.urls),
-    path('', views.home_view, name='homes'),
+    path('', views.home_view, name='home'),
     path('contact/', views.contact_view, name='contact'),
     path('employers/', views.employers_view, name='employers'),
     path('upload/', views.upload_view, name='upload'),
